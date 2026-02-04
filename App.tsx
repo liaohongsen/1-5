@@ -128,6 +128,8 @@ const ProductNavCard: React.FC<{
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [lightboxAlt, setLightboxAlt] = useState<string>('');
 
   // Scroll to top on page change
   useEffect(() => {
@@ -303,15 +305,33 @@ export default function App() {
 
         <div className="space-y-6 mb-12">
           {[
-            { p: "第一阶段", t: "研究方向定位 & 套磁启动", d: "由背景对口导师对学生学术与科研背景沟通评估，协助明确可行的博士研究方向与导师画像，制定套磁策略。围绕真实研究兴趣与学术匹配展开。" },
-            { p: "第二阶段", t: "博导沟通深化 & 博士面试准备", d: "持续跟进辅导学术沟通，针对面试进行定向准备。训练研究逻辑表达、学术问题应答与研究潜力呈现，确保沟通符合学术语境。" },
-            { p: "第三阶段", t: "研究计划 (RP) 撰写与打磨", d: "导师直接对接，参与方法论教学，多轮讨论与修改，围绕研究问题设计、方法可行性与研究深度系统打磨，确保 RP 符合真实评估标准。" },
-            { p: "第四阶段", t: "网申材料准备 & 奖学金申请", d: "协助完成博士网申与奖学金申请。确保材料高度一致，最大化提升录取与资助成功率。完成博士正式申请，冲刺 Offer 与奖学金。" }
+            { p: "第一阶段", t: "研究方向定位 & 套磁启动", d: "由背景对口导师对学生学术与科研背景沟通评估，协助明确可行的博士研究方向与导师画像，制定套磁策略。围绕真实研究兴趣与学术匹配展开。", img: "/images/1.jpg", imgAlt: "研究兴趣与学术匹配" },
+            { p: "第二阶段", t: "博导沟通深化 & 博士面试准备", d: "持续跟进辅导学术沟通，针对面试进行定向准备。训练研究逻辑表达、学术问题应答与研究潜力呈现，确保沟通符合学术语境。", img: "/images/2.jpg", imgAlt: "学术语境沟通" },
+            { p: "第三阶段", t: "研究计划 (RP) 撰写与打磨", d: "导师直接对接，参与方法论教学，多轮讨论与修改，围绕研究问题设计、方法可行性与研究深度系统打磨，确保 RP 符合真实评估标准。", img: "/images/3.jpg", imgAlt: "RP 评估标准" },
+            { p: "第四阶段", t: "网申材料准备 & 奖学金申请", d: "协助完成博士网申与奖学金申请。确保材料高度一致，最大化提升录取与资助成功率。完成博士正式申请，冲刺 Offer 与奖学金。", img: "/images/4.jpg", imgAlt: "冲刺 Offer 与奖学金" }
           ].map((item, i) => (
             <div key={i} className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm">
               <div className="text-[10px] font-black text-yushi-orange uppercase tracking-widest mb-1">{item.p}</div>
               <h4 className="text-[16px] font-black text-gray-800 mb-2 leading-tight">{item.t}</h4>
               <p className="text-[12px] text-gray-500 leading-relaxed font-medium">{item.d}</p>
+              {item.img && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setLightboxSrc(item.img);
+                    setLightboxAlt(item.imgAlt || "查看原图");
+                  }}
+                  className="block mt-4 w-full text-left"
+                  aria-label="查看原图"
+                >
+                  <img
+                    src={item.img}
+                    alt={item.imgAlt || "展示图片"}
+                    className="w-full h-auto object-contain rounded-2xl border border-gray-100"
+                    loading="lazy"
+                  />
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -423,6 +443,44 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        <div className="mb-12">
+          <div className="flex items-center gap-2 mb-6 px-2">
+            <div className="w-1 h-5 bg-yushi-orange rounded-full"></div>
+            <h3 className="text-[20px] font-black text-gray-800 tracking-tight">部分博士 Offer 展示</h3>
+          </div>
+
+          <div className="bg-white rounded-[2rem] shadow-xl shadow-gray-100 border border-gray-100 overflow-hidden p-5">
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { src: "/images/off1.png", alt: "博士 Offer 展示 1" },
+                { src: "/images/off2.png", alt: "博士 Offer 展示 2" },
+                { src: "/images/off3.png", alt: "博士 Offer 展示 3" },
+                { src: "/images/off4.png", alt: "博士 Offer 展示 4" },
+                { src: "/images/off5.png", alt: "博士 Offer 展示 5" },
+                { src: "/images/off6.png", alt: "博士 Offer 展示 6" }
+              ].map((img) => (
+                <button
+                  key={img.src}
+                  type="button"
+                  onClick={() => {
+                    setLightboxSrc(img.src);
+                    setLightboxAlt(img.alt);
+                  }}
+                  className="w-full text-left"
+                  aria-label="查看原图"
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-auto object-contain rounded-2xl border border-gray-100 bg-white"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
       {renderFooter()}
     </div>
@@ -503,6 +561,34 @@ export default function App() {
 
         {currentPage === 'concierge' && <ConciergeView />}
       </main>
+
+      {lightboxSrc && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm flex items-center justify-center p-6"
+          onClick={() => setLightboxSrc(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="max-w-[900px] w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="flex justify-end mb-2">
+              <button
+                className="text-white/90 text-[12px] font-black bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-full"
+                onClick={() => setLightboxSrc(null)}
+                aria-label="关闭查看"
+              >
+                关闭
+              </button>
+            </div>
+            <div className="bg-white rounded-3xl p-3 shadow-2xl">
+              <img
+                src={lightboxSrc}
+                alt={lightboxAlt || "查看原图"}
+                className={`w-full h-auto object-contain rounded-2xl ${lightboxSrc === "/images/2.jpg" ? "scale-90" : ""}`}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
