@@ -184,7 +184,7 @@ export default function App() {
           <div className="flex-1 pl-4 flex items-center justify-between">
             <h3 className="text-[12px] font-black text-yushi-orange">官方微信</h3>
             <div className="w-[48px] h-[48px] bg-white rounded-lg p-1 shadow-sm border border-orange-100/50 ml-2">
-              <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=YUSHI_PHD_2026" alt="QR" className="w-full h-full object-cover rounded" />
+              <img src="./images/wechat.jpg" alt="QR" className="w-full h-full object-cover rounded" />
             </div>
           </div>
         </div>
