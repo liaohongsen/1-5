@@ -195,7 +195,6 @@ export default function App() {
       </div>
     </footer>
   );
-
   const HomeView = () => (
     <div className="animate-in fade-in duration-500">
       <section className="mb-6">
