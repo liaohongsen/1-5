@@ -195,7 +195,7 @@ export default function App() {
       </div>
     </footer>
   );
-  
+
   const HomeView = () => (
     <div className="animate-in fade-in duration-500">
       <section className="mb-6">
@@ -211,7 +211,6 @@ export default function App() {
           </div>
         </div>
       </section>
-
       <section className="px-6 py-2 space-y-4">
         <ProductNavCard 
           label="DOCTORAL PROGRAM" 
