@@ -326,7 +326,7 @@ export default function App() {
                   <img
                     src={item.img}
                     alt={item.imgAlt || "展示图片"}
-                    className="w-full h-auto object-contain rounded-2xl border border-gray-100"
+                    className="w-[50%] h-auto object-contain rounded-2xl border border-gray-100"
                     loading="lazy"
                   />
                 </button>
@@ -349,7 +349,7 @@ export default function App() {
                   n: "套磁全程", 
                   q: "20-25位导师", 
                   p: "18000 RMB", 
-                  c: "依据学员提供的学校，为学员合适导师，由专业背景对口的资深文书导师挖掘学员背景，结合学员研究方向及意向导师清单撰写套磁信+简历，并全程跟进套磁的反馈及结果。" 
+                  c: "依据学员的专业和背景，为学员匹配合适的博士申请导师，由导师挖掘学员背景，结合学员研究兴趣方向选择合适博士意向导师，并向意向导师撰写套磁信+简历，全程跟进套磁的反馈及结果。" 
                 },
                 { 
                   id: 'cpr-2', 
